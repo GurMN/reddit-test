@@ -1,6 +1,8 @@
 package com.test.redditproject.ui.main
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.test.redditproject.api.ApiRepository
 import com.test.redditproject.api.ChildrenModel
@@ -8,6 +10,7 @@ import com.test.redditproject.api.ParentRequestModel
 import com.test.redditproject.api.Result.Error
 import com.test.redditproject.api.Result.Success
 import com.test.redditproject.data.PostsRepository
+import com.test.redditproject.data.mapInfoToModel
 import com.test.redditproject.data.mapModelToInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +28,10 @@ class MainViewModel : ViewModel() {
     private val api = ApiRepository.getInstance()
     private val repo = PostsRepository.getInstance()
 
-
     private var lastPage = ""
+
+    var topList = Transformations.map(repo!!.getTopList()) { it.map { it.mapInfoToModel() } }
+    val isLoadingLD = MutableLiveData<Boolean>().apply { postValue(false) }
 
     init {
         getTop()
