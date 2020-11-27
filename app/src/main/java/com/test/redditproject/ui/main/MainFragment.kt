@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.redditproject.R
+import com.test.redditproject.util.PaginationScrollListener
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
@@ -37,6 +38,21 @@ class MainFragment : Fragment() {
         adapter = MainAdapter()
         rvMain.adapter = adapter
 
+        rvMain.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            override fun isLastPage(): Boolean {
+//                We assume that Reddit has infinite count of data
+                return false
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+            override fun loadMoreItems() {
+                isLoading = true
+                viewModel.getTop()
+            }
+        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

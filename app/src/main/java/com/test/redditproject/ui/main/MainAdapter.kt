@@ -49,11 +49,13 @@ class MainAdapter(private val topList: MutableList<DataModel> = mutableListOf())
             }
             holder.tvDate.text = sb.toString()
             holder.tvPost.text = selftext
-            if (thumbnail != null) holder.ivPost.isVisible = true
-            Glide.with(holder.ivPost)
-                .load(thumbnail)
-                .dontAnimate()
-                .into(holder.ivPost)
+            if (!thumbnail.isNullOrEmpty()) {
+                holder.ivPost.isVisible = true
+                Glide.with(holder.ivPost)
+                    .load(thumbnail)
+                    .dontAnimate()
+                    .into(holder.ivPost)
+            }
             val spannableString = SpannableString(url)
             spannableString.setSpan(
                 url?.makeClickableSpan(),

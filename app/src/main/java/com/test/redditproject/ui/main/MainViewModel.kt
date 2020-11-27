@@ -18,8 +18,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class MainViewModel : ViewModel() {
+private const val POSTS_COUNT = 10
 
+class MainViewModel : ViewModel() {
     private val parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Default
@@ -38,19 +39,19 @@ class MainViewModel : ViewModel() {
     }
 
     fun getTop() {
-
+        isLoadingLD.postValue(true)
         scope.launch {
             val res = if (lastPage.isNullOrEmpty()) {
                 api.getTop()
             } else {
-                api.getNext(lastPage, 10.toString())
+                api.getNext(lastPage, POSTS_COUNT.toString())
             }
-
+            isLoadingLD.postValue(false)
             when (res) {
                 is Success -> {
                     Log.d("request result", res.data.toString())
                     val model = res.data as ParentRequestModel
-
+                    lastPage = model.data.after ?: ""
                     saveToDb(model.data.children, repo!!)
                 }
                 is Error -> {
