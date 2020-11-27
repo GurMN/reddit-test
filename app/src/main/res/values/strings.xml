@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RedditProject</string>
+    <string name="time_seconds_ago">%1$d seconds ago</string>
+    <string name="time_minutes_ago">%1$d minutes ago</string>
+    <string name="time_hours_ago">%1$d hours ago</string>
+    <string name="time_days_ago">%1$d days ago</string>
 </resources>
