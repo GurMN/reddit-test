@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="3dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="@tools:sample/lorem" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textStyle="bold"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/tvPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:textColor="@android:color/black"
+                    tools:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tvLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="reddit.com/top" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivPost"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:visibility="gone"
+                tools:srcCompat="@tools:sample/avatars"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                card_view:drawableStartCompat="@drawable/ic_star_black_24dp"
+                tools:text="rating" />
+
+            <TextView
+                android:id="@+id/tvComments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                card_view:drawableStartCompat="@drawable/ic_chat_bubble_black_24dp"
+                tools:text="comments" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                card_view:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                tools:text="12 h ago" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
